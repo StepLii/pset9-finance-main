@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+<!--
+1. what stocks
+2. numbers of shares
+3. current price of each stock
+4. total value of each holding (current price * shares)
+5. cash balance (cash + stock value)
+)-->
+
+   <h>Your Account</h>
+
+   <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Stock</th>
+      <th scope="col">Number of Shares</th>
+      <th scope="col">Current Price</th>
+      <th scope="col">Total Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rows in records %}
+    <tr>
+        <th scope ="row">{{ rows.symbol}}</th>
+        <td>{{ rows.shares }}</td>
+        <td>{{ rows.current_price | usd}}</td>
+        <td>{{ rows.total_value | usd}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+    <h>Cash Remaining: {{cash_balance | usd}}</h>
+    <h>Total Balance: {{cash | usd}}</h>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+<h>Your Trading History</h>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Stock</th>
+      <th scope="col">Buy/Sell</th>
+      <th scope="col">Number of Shares</th>
+      <th scope="col">Price</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for rows in history %}
+    <tr>
+        <th scope ="row">{{ rows.symbol }}</th>
+        <td>{{ rows.buysell }}</td>
+        <td>{{ rows.shares }}</td>
+        <td>{{ rows.price | usd}}</td>
+        <td>{{ rows.date }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}
